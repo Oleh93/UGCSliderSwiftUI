@@ -17,6 +17,7 @@
 		119D4CDD2BAC52B300BB36EB /* LinkPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CDC2BAC52B300BB36EB /* LinkPageView.swift */; };
 		119D4CDF2BAC52EE00BB36EB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CDE2BAC52EE00BB36EB /* PageViewController.swift */; };
 		119D4CE22BAC5F3200BB36EB /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CE12BAC5F3200BB36EB /* DeviceRotationViewModifier.swift */; };
+		4F7E05382BACEE0F005266F3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F7E05372BACEE0F005266F3 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7E05382BACEE0F005266F3 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +119,9 @@
 			dependencies = (
 			);
 			name = PageViewController;
+			packageProductDependencies = (
+				4F7E05372BACEE0F005266F3 /* SDWebImageSwiftUI */,
+			);
 			productName = PageViewController;
 			productReference = 119D4CC42BAB0A7D00BB36EB /* PageViewController.app */;
 			productType = "com.apple.product-type.application";
@@ -145,6 +150,9 @@
 				Base,
 			);
 			mainGroup = 119D4CBB2BAB0A7D00BB36EB;
+			packageReferences = (
+				4F7E05362BACEE0F005266F3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 119D4CC52BAB0A7D00BB36EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -384,6 +392,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F7E05362BACEE0F005266F3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F7E05372BACEE0F005266F3 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F7E05362BACEE0F005266F3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 119D4CBC2BAB0A7D00BB36EB /* Project object */;
 }

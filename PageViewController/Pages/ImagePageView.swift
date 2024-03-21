@@ -6,40 +6,48 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ImagePageView: View {
     var url: String
     @State private var scale: CGFloat = 1.0
+    @State private var loadingFailed: Bool = false
     
     var body: some View {
-        loadImage(from: url)
-            .scaleEffect(scale)
-            .gesture(
-              MagnificationGesture()
-                .onChanged { value in
-                  self.scale = value.magnitude
-                }
-                .onEnded { value in
-                    if self.scale < 1.0 {
-                        withAnimation {
-                            self.scale = 1.0
-                        }
-                    }
-                }
-            )
-            .padding()
+        Group {
+            if loadingFailed {
+                errorView
+            } else {
+                image(from: url)
+            }
+        }
     }
     
-    @ViewBuilder
-    private func loadImage(from url: String) -> some View {
-        AsyncImage(
-            url: URL(string: url)) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                Text("Loading ...")
+    private func image(from url: String) -> some View {
+        WebImage(url: URL(string: url)) { image in
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        } placeholder: {
+            ProgressView {
+                Text("Loading...")
+                    .font(.headline)
             }
+        }
+        .onFailure { _ in
+            self.loadingFailed = true
+        }
+    }
+    
+    private var errorView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.circle.fill")
+                .resizable()
+                .frame(width: 150, height: 150)
+            Text("The server is currently unavailable. Please check your internet connection or try again later")
+                .font(.title)
+        }
+        .padding(20)
     }
 }
 
