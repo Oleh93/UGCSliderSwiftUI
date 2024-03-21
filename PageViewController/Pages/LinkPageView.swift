@@ -44,7 +44,7 @@ struct LinkPageView: View {
                 .sheet(isPresented: $showingAudioDrawer) {
                     AudioPageView(viewModel: self.audioPageViewModel)
                         .presentationDetents([.medium, .large])
-                        .background(.gray)
+                        .background(Color(.systemGray))
                 }
             } else {
                 HStack {
@@ -53,7 +53,7 @@ struct LinkPageView: View {
                     Spacer()
                     AudioPageView(viewModel: self.audioPageViewModel)
                         .frame(width: 250, alignment: .trailing)
-                        .background(.gray)
+                        .background(Color(.systemGray))
                 }
             }
         }
