@@ -10,13 +10,8 @@ import SwiftUI
 import AVKit
 
 struct AudioPageView: View {
-    var filename: String
     
-    @State private var player: AVAudioPlayer?
-    
-    @State private var isPLaying = false
-    @State private var totalTime: TimeInterval = 0.0
-    @State private var currentTime: TimeInterval = 0.0
+    @ObservedObject var viewModel: AudioPageViewModel
     
     var body: some View {
         VStack {
@@ -25,15 +20,64 @@ struct AudioPageView: View {
             Spacer()
         }
         .onAppear(perform: {
-            setupAudio()
+            viewModel.setupAudio()
         })
         .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { _ in
-            updateProgress()
+            viewModel.updateProgress()
         }
     }
     
-    private func setupAudio() {
+    @ViewBuilder
+    func PlayerView() -> some View {
+        VStack(spacing: 16) {
+            Text("My Awesome Audio")
+            
+            Slider(value: Binding(get: {
+                viewModel.currentTime
+            }, set: { newValue in
+                viewModel.seekAudio(to: newValue)
+            }), in: 0...viewModel.totalTime)
+            .foregroundColor(.black)
+            
+            
+            HStack {
+                Text(viewModel.timeString(time: viewModel.currentTime))
+                Spacer()
+                Text(viewModel.timeString(time: viewModel.totalTime))
+            }
+            
+            HStack() {
+                Spacer()
+                Button {
+                    viewModel.isPLaying ? viewModel.stopAudio() : viewModel.playAudio()
+                } label: {
+                    Image(systemName: viewModel.isPLaying ? "pause.fill" : "play.fill")
+                        .font(.largeTitle)
+                }
+                Spacer()
+            }
+            .foregroundColor(.black)
+        }
+    }
+}
+
+class AudioPageViewModel: ObservableObject {
+    var filename: String
+    
+    init(filename: String) {
+        self.filename = filename
+    }
+    
+    @Published private var player: AVAudioPlayer?
+    
+    @Published var isPLaying = false
+    @Published var totalTime: TimeInterval = 0.0
+    @Published var currentTime: TimeInterval = 0.0
+    
+    func setupAudio() {
         guard let url = Bundle.main.url(forResource: filename, withExtension: "mp3") else { return }
+        
+        guard player == nil else { return }
         
         do {
             player = try AVAudioPlayer(contentsOf: url)
@@ -44,62 +88,32 @@ struct AudioPageView: View {
         }
     }
     
-    private func playAudio() {
+    func playAudio() {
         player?.play()
         isPLaying = true
     }
     
-    private func stopAudio() {
+    func stopAudio() {
         player?.stop()
         isPLaying = false
     }
     
-    private func updateProgress() {
+    func updateProgress() {
         guard let player = player else { return }
         currentTime = player.currentTime
     }
     
-    private func seekAudio(to time: TimeInterval) {
+    func seekAudio(to time: TimeInterval) {
         player?.currentTime = time
     }
     
-    private func timeString(time: TimeInterval) -> String {
+    func timeString(time: TimeInterval) -> String {
         let minute = Int(time) / 60
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minute, seconds)
     }
-    
-    @ViewBuilder
-    func PlayerView() -> some View {
-        VStack(spacing: 16) {
-            Text("My Awesome Audio")
-            
-            Slider(value: Binding(get: {
-                currentTime
-            }, set: { newValue in
-                seekAudio(to: newValue)
-            }), in: 0...totalTime)
-            .foregroundColor(.black)
-            
-            
-            HStack {
-                Text(timeString(time:currentTime))
-                Spacer()
-                Text(timeString(time:totalTime))
-            }
-            
-            HStack() {
-                Spacer()
-                Button {
-                    isPLaying ? stopAudio() : playAudio()
-                } label: {
-                    Image(systemName: isPLaying ? "pause.fill" : "play.fill")
-                        .font(.largeTitle)
-                }
-                Spacer()
-            }
-            .foregroundColor(.black)
-        }
-        .padding(16)
-    }
+}
+
+#Preview {
+    AudioPageView(viewModel: AudioPageViewModel(filename: "TestFile"))
 }

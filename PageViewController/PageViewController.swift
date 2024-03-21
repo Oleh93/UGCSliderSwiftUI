@@ -17,7 +17,6 @@ enum PageType {
 struct PageViewControllerContainer: View {
     
     var pages: [PageType]
-    
     init(_ pages: [PageType]) {
         self.pages = pages
     }
@@ -32,7 +31,7 @@ struct PageViewControllerContainer: View {
         case .image(let url):
             ImagePageView(url: url)
         case .audio(let filename):
-            AudioPageView(filename: filename)
+            AudioPageView(viewModel: AudioPageViewModel(filename: filename))
         case .link(let imageURL, let audioURL):
             LinkPageView(imageURL: imageURL, audioURL: audioURL)
         }
@@ -60,10 +59,8 @@ struct PageViewController: UIViewControllerRepresentable {
             }
             return self.parent.controllers[index + 1]
         }
-            
         
         let parent: PageViewController
-
         init(_ parent: PageViewController) {
             self.parent = parent
         }
