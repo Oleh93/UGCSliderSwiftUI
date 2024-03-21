@@ -25,7 +25,7 @@ struct PageViewControllerContainer: View {
                     .tag(index)
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
     
     @ViewBuilder
