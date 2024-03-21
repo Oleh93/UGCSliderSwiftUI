@@ -19,6 +19,7 @@ struct AudioPageView: View {
             PlayerView()
             Spacer()
         }
+        .padding()
         .onAppear(perform: {
             viewModel.setupAudio()
         })
@@ -37,8 +38,6 @@ struct AudioPageView: View {
             }, set: { newValue in
                 viewModel.seekAudio(to: newValue)
             }), in: 0...viewModel.totalTime)
-            .foregroundColor(.black)
-            
             
             HStack {
                 Text(viewModel.timeString(time: viewModel.currentTime))
@@ -56,8 +55,8 @@ struct AudioPageView: View {
                 }
                 Spacer()
             }
-            .foregroundColor(.black)
         }
+        .foregroundColor(.white)
     }
 }
 
@@ -116,4 +115,5 @@ class AudioPageViewModel: ObservableObject {
 
 #Preview {
     AudioPageView(viewModel: AudioPageViewModel(filename: "TestFile"))
+        .environment(\.colorScheme, .dark)
 }

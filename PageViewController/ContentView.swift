@@ -18,7 +18,9 @@ struct ContentView: View {
             .image(imageURl2),
             .link(imageURl2, "TestFile")
         ])
-        .padding(16)
+        .background(.black)
+        .environment(\.colorScheme, .dark)
+        .ignoresSafeArea()
     }
 }
 
