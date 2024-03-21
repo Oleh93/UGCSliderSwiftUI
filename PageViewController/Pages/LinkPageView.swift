@@ -29,7 +29,6 @@ struct LinkPageView: View {
             if horizontalSizeClass == .compact {
                 ZStack {
                     VStack {
-                        Text("Link")
                         ImagePageView(url: imageURL)
                     }
                     

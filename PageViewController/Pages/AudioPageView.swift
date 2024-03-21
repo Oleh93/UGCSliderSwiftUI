@@ -58,7 +58,6 @@ struct AudioPageView: View {
             }
             .foregroundColor(.black)
         }
-        .padding(16)
     }
 }
 

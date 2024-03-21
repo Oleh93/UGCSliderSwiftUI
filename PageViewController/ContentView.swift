@@ -18,6 +18,7 @@ struct ContentView: View {
             .image(imageUrl1),
             .link(imageURl2, "TestFile")
         ])
+        .padding(16)
     }
 }
 

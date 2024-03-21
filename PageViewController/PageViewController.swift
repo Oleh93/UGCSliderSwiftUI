@@ -17,7 +17,6 @@ enum PageType {
 struct PageViewControllerContainer: View {
     
     var pages: [PageType]
-    
     init(_ pages: [PageType]) {
         self.pages = pages
     }
@@ -60,10 +59,8 @@ struct PageViewController: UIViewControllerRepresentable {
             }
             return self.parent.controllers[index + 1]
         }
-            
         
         let parent: PageViewController
-
         init(_ parent: PageViewController) {
             self.parent = parent
         }
