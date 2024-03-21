@@ -27,6 +27,7 @@ struct ImagePageView: View {
                     }
                 }
             )
+            .padding()
     }
     
     @ViewBuilder
