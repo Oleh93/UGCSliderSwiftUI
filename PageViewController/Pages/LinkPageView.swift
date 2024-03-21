@@ -12,6 +12,7 @@ struct LinkPageView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     
     @State private var showingAudioDrawer = false
+    @State private var isShowingAudioSideView = false
     
     var imageURL: String
     var audioURL: String
@@ -28,23 +29,22 @@ struct LinkPageView: View {
         Group {
             if horizontalSizeClass == .compact {
                 ZStack {
-                    VStack {
-                        ImagePageView(url: imageURL)
-                    }
+                    ImagePageView(url: imageURL)
                     
                     Button {
                         showingAudioDrawer = true
                     } label: {
                         Text("Play Audio")
+                            .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                     .padding(.bottom, 16)
-                    .padding(.trailing, 16)
+                    .padding(.trailing, 32)
                 }
-                
                 .sheet(isPresented: $showingAudioDrawer) {
                     AudioPageView(viewModel: self.audioPageViewModel)
                         .presentationDetents([.medium, .large])
+                        .background(Color(.systemGray))
                 }
             } else {
                 HStack {
@@ -53,6 +53,7 @@ struct LinkPageView: View {
                     Spacer()
                     AudioPageView(viewModel: self.audioPageViewModel)
                         .frame(width: 250, alignment: .trailing)
+                        .background(Color(.systemGray))
                 }
             }
         }
