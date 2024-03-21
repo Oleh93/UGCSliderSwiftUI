@@ -12,6 +12,10 @@
 		119D4CCC2BAB0A7F00BB36EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119D4CCB2BAB0A7F00BB36EB /* Assets.xcassets */; };
 		119D4CCF2BAB0A7F00BB36EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119D4CCE2BAB0A7F00BB36EB /* Preview Assets.xcassets */; };
 		119D4CD62BAB43ED00BB36EB /* TestFile.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 119D4CD52BAB43ED00BB36EB /* TestFile.mp3 */; };
+		119D4CD92BAC523000BB36EB /* ImagePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CD82BAC523000BB36EB /* ImagePageView.swift */; };
+		119D4CDB2BAC526400BB36EB /* AudioPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CDA2BAC526400BB36EB /* AudioPageView.swift */; };
+		119D4CDD2BAC52B300BB36EB /* LinkPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CDC2BAC52B300BB36EB /* LinkPageView.swift */; };
+		119D4CDF2BAC52EE00BB36EB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119D4CDE2BAC52EE00BB36EB /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		119D4CCB2BAB0A7F00BB36EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		119D4CCE2BAB0A7F00BB36EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		119D4CD52BAB43ED00BB36EB /* TestFile.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TestFile.mp3; sourceTree = "<group>"; };
+		119D4CD82BAC523000BB36EB /* ImagePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageView.swift; sourceTree = "<group>"; };
+		119D4CDA2BAC526400BB36EB /* AudioPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPageView.swift; sourceTree = "<group>"; };
+		119D4CDC2BAC52B300BB36EB /* LinkPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPageView.swift; sourceTree = "<group>"; };
+		119D4CDE2BAC52EE00BB36EB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +61,11 @@
 		119D4CC62BAB0A7D00BB36EB /* PageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				119D4CD52BAB43ED00BB36EB /* TestFile.mp3 */,
 				119D4CC72BAB0A7D00BB36EB /* PageViewControllerApp.swift */,
+				119D4CDE2BAC52EE00BB36EB /* PageViewController.swift */,
 				119D4CC92BAB0A7D00BB36EB /* ContentView.swift */,
+				119D4CD72BAC520A00BB36EB /* Pages */,
+				119D4CD52BAB43ED00BB36EB /* TestFile.mp3 */,
 				119D4CCB2BAB0A7F00BB36EB /* Assets.xcassets */,
 				119D4CCD2BAB0A7F00BB36EB /* Preview Content */,
 			);
@@ -68,6 +78,16 @@
 				119D4CCE2BAB0A7F00BB36EB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		119D4CD72BAC520A00BB36EB /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				119D4CD82BAC523000BB36EB /* ImagePageView.swift */,
+				119D4CDA2BAC526400BB36EB /* AudioPageView.swift */,
+				119D4CDC2BAC52B300BB36EB /* LinkPageView.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +161,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				119D4CDB2BAC526400BB36EB /* AudioPageView.swift in Sources */,
+				119D4CD92BAC523000BB36EB /* ImagePageView.swift in Sources */,
 				119D4CCA2BAB0A7D00BB36EB /* ContentView.swift in Sources */,
+				119D4CDF2BAC52EE00BB36EB /* PageViewController.swift in Sources */,
+				119D4CDD2BAC52B300BB36EB /* LinkPageView.swift in Sources */,
 				119D4CC82BAB0A7D00BB36EB /* PageViewControllerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
