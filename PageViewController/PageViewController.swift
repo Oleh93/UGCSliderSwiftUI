@@ -19,8 +19,10 @@ struct PageViewControllerContainer: View {
     
     var pages: [PageType]
     
+    @State public var tabViewSelection = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $tabViewSelection) {
             ForEach(pages.indices, id: \.self) { index in
                 getView(for: pages[index])
                     .tag(index)
