@@ -8,9 +8,6 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-import SwiftUI
-import SDWebImageSwiftUI
-
 struct ImagePageView: View {
     var url: String
     @State private var loadingFailed: Bool = false
@@ -91,7 +88,6 @@ struct ImagePageView: View {
         .padding(20)
     }
 }
-
 
 #Preview {
     ImagePageView(url: "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/f007c94b-0069-4b33-b537-312f1f712602.jpg?Client=AncestryIOS&MaxSide=1000")
