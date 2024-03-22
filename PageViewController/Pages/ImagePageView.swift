@@ -8,19 +8,60 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+import SwiftUI
+import SDWebImageSwiftUI
+
 struct ImagePageView: View {
     var url: String
-    @State private var scale: CGFloat = 1.0
     @State private var loadingFailed: Bool = false
+    @State private var scale: CGFloat = 1.0
+    @GestureState private var gestureScale: CGFloat = 1.0
     
     var body: some View {
         Group {
             if loadingFailed {
                 errorView
             } else {
-                image(from: url)
+                zoomableImage
             }
         }
+        .onDisappear {
+            scale = 1.0
+        }
+    }
+    
+    private var zoomableImage: some View {
+        image(from: url)
+            .scaleEffect(scale * gestureScale)
+            .gesture(
+                MagnificationGesture()
+                    .updating($gestureScale) { value, gestureScale, _ in
+                        gestureScale = value
+                    }
+                    .onEnded { delta in
+                        if (scale * delta) < 1.0 {
+                            withAnimation {
+                                scale = 1.0
+                            }
+                        } else {
+                            scale *= delta
+                        }
+                    }
+            )
+            .gesture(
+                TapGesture(count: 2)
+                    .onEnded {
+                        if scale == 1.0 {
+                            withAnimation {
+                                scale = 4.0
+                            }
+                        } else {
+                            withAnimation {
+                                scale = 1.0
+                            }
+                        }
+                    }
+            )
     }
     
     private func image(from url: String) -> some View {
@@ -50,6 +91,7 @@ struct ImagePageView: View {
         .padding(20)
     }
 }
+
 
 struct ImagePageView_Previews: PreviewProvider {
     static var previews: some View {
