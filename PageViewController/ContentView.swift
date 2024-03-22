@@ -22,9 +22,13 @@ let imageUrl7 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/8a
 
 let imageUrl8 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/ecb71db0-15ec-456e-b032-b677f9daf406.jpg?Client=AncestryIOS&MaxSide=1000"
 
+let videoName = "Ukraine"
+
+let audioName = "TestFile"
+
 struct ContentView: View {
     @ObservedObject var state = PageViewState()
-        
+    
     init() {
         loadPages()
     }
@@ -48,26 +52,9 @@ struct ContentView: View {
                     )
                 ]
             )),
-            .image(.init(
-                url: imageUrl2,
-                toolBarItems: [
-                    .init(
-                        image: .init(systemName: "info.circle"),
-                        action: { state.isShowingInfoAlert = true }
-                    ),
-                    .init(
-                        image: .init(systemName: "square.and.arrow.up"),
-                        action: { }
-                    ),
-                    .init(
-                        image: .init(systemName: "trash"),
-                        action: { state.isShowingDeleteAlert = true }
-                    )
-                ]
-            )),
-            .image(.init(url: imageUrl3)),
-            .image(.init(url: imageUrl4)),
-            .image(.init(url: imageUrl5))
+            .audio(audioName),
+            .link(imageUrl2, audioName),
+            .video(videoName),
         ]
         
         state.configurePages(pages)
@@ -77,7 +64,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: .zero) {
-            PageView(state: state)
+            PageView(
+                currentIndex: $state.currentIndex,
+                pages: $state.pages
+            )
             ToolbarView(items: state.currentPage.toolBarItems)
         }
         .background(.black)

@@ -12,6 +12,7 @@ enum PageType {
     case image(ImageConfig)
     case audio(String)
     case link(String, String)
+    case video(String)
     
     // MARK: - ImageConfig
     struct ImageConfig {
@@ -31,13 +32,13 @@ enum PageType {
 }
 
 struct PageView: View {
-    
-    @ObservedObject var state: PageViewState
+    @Binding var currentIndex: Int
+    @Binding var pages: [PageType]
     
     var body: some View {
-        TabView(selection: $state.currentIndex) {
-            ForEach(state.pages.indices, id: \.self) { index in
-                getView(for: state.pages[index])
+        TabView(selection: $currentIndex) {
+            ForEach(pages.indices, id: \.self) { index in
+                getView(for: pages[index])
                     .tag(index)
             }
         }
@@ -53,6 +54,8 @@ struct PageView: View {
             AudioPageView(viewModel: AudioPageViewModel(filename: filename))
         case .link(let imageURL, let audioURL):
             LinkPageView(imageURL: imageURL, audioURL: audioURL)
+        case .video(let fileName):
+            VideoPageView(videoFileName: fileName)
         }
     }
 }

@@ -12,7 +12,7 @@ class PageViewState: ObservableObject {
     @Published var isShowingInfoAlert: Bool = false
     @Published var isShowingDeleteAlert: Bool = false
 
-    @Published private(set) var pages: [PageType] = []
+    @Published var pages: [PageType] = []
     @Published var currentIndex: Int = .zero
 
     var currentPage: PageType {

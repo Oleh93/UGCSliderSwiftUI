@@ -36,10 +36,10 @@
 		119D4CDC2BAC52B300BB36EB /* LinkPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPageView.swift; sourceTree = "<group>"; };
 		119D4CDE2BAC52EE00BB36EB /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		119D4CE12BAC5F3200BB36EB /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
+		4F7B6CED2BAD9E9100DD117C /* VideoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPageView.swift; sourceTree = "<group>"; };
+		4F7B6CEF2BADA46D00DD117C /* Ukraine.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ukraine.mp4; sourceTree = "<group>"; };
 		7438E0582BADA9F5000EC37F /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		7438E05A2BADAC23000EC37F /* PageViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewState.swift; sourceTree = "<group>"; };
-		4F7B6CEF2BADA46D00DD117C /* Ukraine.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ukraine.mp4; sourceTree = "<group>"; };
-		4F7B6CED2BAD9E9100DD117C /* VideoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +215,7 @@
 				7438E0592BADA9F5000EC37F /* ToolbarView.swift in Sources */,
 				119D4CCA2BAB0A7D00BB36EB /* ContentView.swift in Sources */,
 				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
-				119D4CDF2BAC52EE00BB36EB /* PageViewController.swift in Sources */,
+				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
 				4F7B6CEE2BAD9E9100DD117C /* VideoPageView.swift in Sources */,
 				119D4CDD2BAC52B300BB36EB /* LinkPageView.swift in Sources */,
 				7438E05B2BADAC23000EC37F /* PageViewState.swift in Sources */,
