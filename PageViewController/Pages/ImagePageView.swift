@@ -95,7 +95,7 @@ struct ImagePageView: View {
 
 struct ImagePageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePageView(url: "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/70fc088a-bc84-42b9-8828-5d685cc89924.jpg?Client=AncestryIOS&MaxSide=1200")
+        ImagePageView(url: "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/f007c94b-0069-4b33-b537-312f1f712602.jpg?Client=AncestryIOS&MaxSide=1000")
     }
 }
 
