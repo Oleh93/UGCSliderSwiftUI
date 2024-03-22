@@ -12,6 +12,7 @@ enum PageType {
     case image(String)
     case audio(String)
     case link(String, String)
+    case video(String)
 }
 
 struct PageViewControllerContainer: View {
@@ -37,6 +38,8 @@ struct PageViewControllerContainer: View {
             AudioPageView(viewModel: AudioPageViewModel(filename: filename))
         case .link(let imageURL, let audioURL):
             LinkPageView(imageURL: imageURL, audioURL: audioURL)
+        case .video(let fileName):
+            VideoPageView(videoFileName: fileName)
         }
     }
 }

@@ -24,11 +24,14 @@ struct ContentView: View {
     
     let imageUrl8 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/ecb71db0-15ec-456e-b032-b677f9daf406.jpg?Client=AncestryIOS&MaxSide=1000"
     
+    let videoName = "Ukraine"
+    
     var body: some View {
         PageViewControllerContainer(pages: [
             .audio("TestFile"),
             .image(imageUrl),
             .link(imageUrl2, "TestFile"),
+            .video(videoName),
             .image(imageUrl3),
             .image(imageUrl4),
             .link(imageUrl5, "TestFile"),
