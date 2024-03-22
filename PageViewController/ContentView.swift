@@ -26,8 +26,8 @@ struct ContentView: View {
     
     var body: some View {
         PageViewControllerContainer(pages: [
-            .audio("TestFile"),
             .image(imageUrl),
+            .audio("TestFile"),
             .link(imageUrl2, "TestFile"),
             .image(imageUrl3),
             .image(imageUrl4),
