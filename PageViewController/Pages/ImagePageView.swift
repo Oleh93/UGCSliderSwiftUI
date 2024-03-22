@@ -13,6 +13,8 @@ struct ImagePageView: View {
     @State private var loadingFailed: Bool = false
     @State private var scale: CGFloat = 1.0
     @GestureState private var gestureScale: CGFloat = 1.0
+    @State var offset: CGSize = .zero
+    @State var lastOffset: CGSize = .zero
     
     var body: some View {
         Group {
@@ -24,6 +26,8 @@ struct ImagePageView: View {
         }
         .onDisappear {
             scale = 1.0
+            offset = .zero
+            lastOffset = .zero
         }
     }
     
@@ -45,7 +49,16 @@ struct ImagePageView: View {
                         }
                     }
             )
-            .gesture(
+            .highPriorityGesture(scale == 1.0 ? nil : DragGesture(minimumDistance: 0)
+                .onChanged({ value in
+                    withAnimation(.interactiveSpring()) {
+                        offset = handleOffsetChange(value.translation)
+                    }
+                })
+                .onEnded({ _ in
+                    lastOffset = offset
+                }))
+            .simultaneousGesture(
                 TapGesture(count: 2)
                     .onEnded {
                         if scale == 1.0 {
@@ -55,17 +68,30 @@ struct ImagePageView: View {
                         } else {
                             withAnimation {
                                 scale = 1.0
+                                offset = .zero
+                                lastOffset = .zero
                             }
                         }
                     }
             )
     }
     
+    private func handleOffsetChange(_ offset: CGSize) -> CGSize {
+        var newOffset: CGSize = .zero
+        
+        newOffset.width = offset.width + lastOffset.width
+        newOffset.height = offset.height + lastOffset.height
+        
+        return newOffset
+    }
+    
     private func image(from url: String) -> some View {
         WebImage(url: URL(string: url)) { image in
             image
                 .resizable()
+                .offset(offset)
                 .aspectRatio(contentMode: .fit)
+                .clipped()
         } placeholder: {
             ProgressView {
                 Text("Loading...")
