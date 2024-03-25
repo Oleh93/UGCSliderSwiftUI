@@ -12,6 +12,7 @@ struct LinkPageView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     
     @State private var showingAudioDrawer = false
+    @State private var showingSideDrawer = true
     
     var imageURL: String
     var audioURL: String
@@ -31,16 +32,10 @@ struct LinkPageView: View {
             if horizontalSizeClass == .compact {
                 ZStack {
                     ImagePageView(url: imageURL)
-                    
-                    Button {
-                        showingAudioDrawer = true
-                    } label: {
-                        Text("Play Audio")
-                            .foregroundColor(.white)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-                    .padding(.bottom, 16)
-                    .padding(.trailing, 32)
+                    playAudioButton
+                        .padding(.bottom, 64)
+                        .padding(.trailing, 32)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                 }
                 .sheet(isPresented: $showingAudioDrawer) {
                     AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
@@ -54,10 +49,30 @@ struct LinkPageView: View {
                     Spacer()
                     ImagePageView(url: imageURL)
                     Spacer()
-                    AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
+                    if showingSideDrawer {
+                        VStack {
+                            HStack {
+                                Button { showingSideDrawer = false } label: {
+                                    Image(systemName: "xmark")
+                                        .resizable()
+                                        .frame(width: 18, height: 18)
+                                        .foregroundStyle(Color(uiColor: .label))
+                                }
+                                .frame(width: 44, height: 44)
+                                Spacer()
+                            }
+                            AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
+                        }
                         .frame(width: 250, alignment: .trailing)
                         .background(Color(.secondarySystemBackground).edgesIgnoringSafeArea(.all))
-                        
+                    } else {
+                        VStack {
+                            Spacer()
+                            playAudioButton
+                        }
+                        .padding(.bottom, 64)
+                        .transition(.move(edge: .trailing))
+                    }
                 }
             }
         }
@@ -67,8 +82,30 @@ struct LinkPageView: View {
             } else {
                 showingAudioDrawer = false
             }
+            
+            if horizontalSizeClass == .regular && isDisplayedView {
+                showingSideDrawer = true
+            } else {
+                showingSideDrawer = false
+            }
             print(showingAudioDrawer)
         })
+    }
+    
+    var playAudioButton: some View {
+        Button {
+            if horizontalSizeClass == .compact {
+                showingAudioDrawer = true
+            } else {
+                showingSideDrawer = true
+            }
+        } label: {
+            Text("Play Audio")
+                .foregroundColor(.black)
+        }
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.capsule)
+        .tint(.white)
     }
 }
 
