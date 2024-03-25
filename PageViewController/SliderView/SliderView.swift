@@ -34,9 +34,7 @@ struct SliderView: View {
                 }
             }
             if state.isShowingInfoSideView {
-                infoViewForCurrentPage
-                    .frame(width: 250)
-                    .transition(.move(edge: .trailing))
+                infoSideViewForCurrentPage
             }
         }
         .onChange(of: horizontalSizeClass, {
@@ -64,9 +62,7 @@ struct SliderView: View {
 
     @ViewBuilder
     var infoViewForCurrentPage: some View {
-        MetadataView(metadata: viewModel.metadataForCurrentPage()) {
-            viewModel.didTapInfoViewCloseButton()
-        }
+        MetadataView(metadata: viewModel.metadataForCurrentPage())
         .padding(16)
         .background(Color(.secondarySystemBackground))
     }
@@ -77,6 +73,26 @@ struct SliderView: View {
             primaryButton: .cancel(),
             secondaryButton: .destructive(Text("Delete"), action: { state.deleteCurrentItem() })
         )
+    }
+    
+    @ViewBuilder
+    var infoSideViewForCurrentPage: some View {
+        VStack {
+            HStack {
+                Button { viewModel.didTapInfoViewCloseButton() } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(Color(uiColor: .label))
+                }
+                .frame(width: 44, height: 44)
+                Spacer()
+            }
+            infoViewForCurrentPage
+        }
+        .frame(width: 250)
+        .background(Color(.secondarySystemBackground))
+        .transition(.move(edge: .trailing))
     }
 }
 
