@@ -31,10 +31,10 @@ class SliderViewModel {
         let pages: [PageType] = [
             .image(.init(url: imageUrl)),
             .audio(audioName),
-            .link(imageUrl2, audioName2),
+            .link(imageUrl4, audioName2),
             .video(videoUrl?.absoluteString ?? ""),
             .image(.init(url: imageUrl3)),
-            .image(.init(url: imageUrl4)),
+            .image(.init(url: imageUrl2)),
             .image(.init(url: imageUrl5)),
             .video(videoUrl2?.absoluteString ?? ""),
             .image(.init(url: imageUrl6))

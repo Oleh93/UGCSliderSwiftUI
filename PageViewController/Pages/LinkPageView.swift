@@ -44,9 +44,11 @@ struct LinkPageView: View {
                 }
                 .sheet(isPresented: $showingAudioDrawer) {
                     AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
-                        .presentationDetents([.medium, .large])
-                        .background(Color(.systemGray))
+                        .presentationDetents([.height(200), .large])
+                        .background(Color(.secondarySystemBackground))
+                        .environment(\.colorScheme, .dark)
                 }
+                
             } else {
                 HStack {
                     Spacer()
@@ -54,7 +56,8 @@ struct LinkPageView: View {
                     Spacer()
                     AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
                         .frame(width: 250, alignment: .trailing)
-                        .background(Color(.systemGray))
+                        .background(Color(.secondarySystemBackground).edgesIgnoringSafeArea(.all))
+                        
                 }
             }
         }
@@ -70,5 +73,5 @@ struct LinkPageView: View {
 }
 
 #Preview {
-    LinkPageView(imageURL: "https://mediasvc.ancestrystage.com/v2/image/namespaces/1093/media/4cc0bbbd-b908-4105-b198-17c3de9e50c6.jpg?Client=AncestryIOS&MaxSide=400", audioURL: "TestFile", audioPageViewModel: AudioPageViewModel(filename: audioName), isDisplayedView: true)
+    LinkPageView(imageURL: "https://mediasvc.ancestrystage.com/v2/image/namespaces/1093/media/4cc0bbbd-b908-4105-b198-17c3de9e50c6.jpg?Client=AncestryIOS&MaxSide=400", audioURL: "TestFile", audioPageViewModel: AudioPageViewModel(filename: audioName, name: "We are from Ukraine"), isDisplayedView: true)
 }

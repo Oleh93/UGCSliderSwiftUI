@@ -29,20 +29,12 @@ class SliderViewState: ObservableObject {
     
     func getViewModel(for page: PageType) -> AudioPageViewModel? {
         switch page {
-        case .audio(let string):
+        case .audio(let string), .link(_, let string):
             if let vm = audioViewModels[string] {
                 return vm
             } else {
-                let vm = AudioPageViewModel(filename: string)
+                let vm = AudioPageViewModel(filename: string, name: "We are from Ukraine")
                 audioViewModels[string] = vm
-                return vm
-            }
-        case .link(_, let string2):
-            if let vm = audioViewModels[string2] {
-                return vm
-            } else {
-                let vm = AudioPageViewModel(filename: string2)
-                audioViewModels[string2] = vm
                 return vm
             }
         default:

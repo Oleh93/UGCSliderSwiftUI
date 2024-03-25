@@ -40,7 +40,7 @@ struct AudioPageView: View {
     @ViewBuilder
     func PlayerView() -> some View {
         VStack(spacing: 16) {
-            Text("My Awesome Audio")
+            Text(viewModel.name)
             
             Slider(value: Binding(get: {
                 viewModel.currentTime
@@ -71,9 +71,11 @@ struct AudioPageView: View {
 
 class AudioPageViewModel: ObservableObject {
     var filename: String
+    var name: String
     
-    init(filename: String) {
+    init(filename: String, name: String) {
         self.filename = filename
+        self.name = name
     }
     
     @Published private var player: AVAudioPlayer?
@@ -128,6 +130,6 @@ class AudioPageViewModel: ObservableObject {
 }
 
 #Preview {
-    AudioPageView(isDisplayedView: true, viewModel: AudioPageViewModel(filename: "TestFile"))
+    AudioPageView(isDisplayedView: true, viewModel: AudioPageViewModel(filename: "TestFile", name: "We are from Ukraine"))
         .environment(\.colorScheme, .dark)
 }
