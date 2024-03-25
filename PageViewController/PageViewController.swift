@@ -15,8 +15,7 @@ enum PageType {
     case video(String)
 }
 
-struct PageViewControllerContainer: View {
-    
+struct PageView: View {
     var pages: [PageType]
     
     var body: some View {
@@ -38,8 +37,8 @@ struct PageViewControllerContainer: View {
             AudioPageView(viewModel: AudioPageViewModel(filename: filename))
         case .link(let imageURL, let audioURL):
             LinkPageView(imageURL: imageURL, audioURL: audioURL)
-        case .video(let fileName):
-            VideoPageView(videoFileName: fileName)
+        case .video(let videoUrl):
+            VideoPageView(url: videoUrl)
         }
     }
 }
