@@ -18,17 +18,8 @@ enum PageType {
     struct ImageConfig {
         var imageName: String = "test_image"
         var description: String = "This is an image"
+        var dateString: String = "25/03/2024 12:40:30"
         var url: String
-        var toolBarItems: [ToolbarView.ToolBarItemConfig] = []
-    }
-    
-    var toolBarItems: [ToolbarView.ToolBarItemConfig] {
-        switch self {
-        case .image(let imageConfig):
-            return imageConfig.toolBarItems
-        default:
-            return []
-        }
     }
 }
 

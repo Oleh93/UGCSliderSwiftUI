@@ -30,6 +30,7 @@
 		7438E0682BB18AC3000EC37F /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0672BB18AC3000EC37F /* SliderViewModel.swift */; };
 		7438E06F2BB19435000EC37F /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E06E2BB19435000EC37F /* SliderView.swift */; };
 		7438E0712BB195F1000EC37F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0702BB195F1000EC37F /* Constants.swift */; };
+		7438E0752BB19809000EC37F /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0742BB19809000EC37F /* MetadataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		7438E0672BB18AC3000EC37F /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
 		7438E06E2BB19435000EC37F /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		7438E0702BB195F1000EC37F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7438E0742BB19809000EC37F /* MetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				119D4CDE2BAC52EE00BB36EB /* PageView.swift */,
 				7438E0582BADA9F5000EC37F /* ToolbarView.swift */,
+				7438E0742BB19809000EC37F /* MetadataView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				7438E0592BADA9F5000EC37F /* ToolbarView.swift in Sources */,
 				119D4CCA2BAB0A7D00BB36EB /* ContentView.swift in Sources */,
 				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
+				7438E0752BB19809000EC37F /* MetadataView.swift in Sources */,
 				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
 				4F9C25EE2BB0DAA800297F05 /* PlayerControlsView.swift in Sources */,
 				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
