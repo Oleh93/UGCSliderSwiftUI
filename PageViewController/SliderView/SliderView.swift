@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct SliderView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+    
     let viewModel: SliderViewModel
     @ObservedObject var state: SliderViewState
 
@@ -28,12 +30,19 @@ struct SliderView: View {
             )
             ToolbarView(items: viewModel.toolBarItemsForCurrentPage())
         }
+        .onChange(of: horizontalSizeClass, {
+            print(horizontalSizeClass)
+        })
         .background(.black)
         .environment(\.colorScheme, .dark)
         .sheet(isPresented: $state.isShowingInfoAlert) {
-            infoViewForCurrentPage
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
+            ZStack {
+                Color(.secondarySystemBackground).edgesIgnoringSafeArea(.all)
+                infoViewForCurrentPage
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
+            .environment(\.colorScheme, .dark)
         }
         .alert(isPresented: $state.isShowingDeleteAlert) {
             deleteAlertForCurrentPage
@@ -43,7 +52,7 @@ struct SliderView: View {
     @ViewBuilder
     var infoViewForCurrentPage: some View {
         MetadataView(metadata: viewModel.metadataForCurrentPage())
-            .padding(.horizontal, 16)
+            .padding(16)
     }
     
     var deleteAlertForCurrentPage: Alert {

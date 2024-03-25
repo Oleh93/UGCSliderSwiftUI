@@ -50,33 +50,28 @@ class SliderViewModel {
                 .init(name: "Title", descripiton: imageConfig.imageName),
                 .init(name: "Description", descripiton: imageConfig.description),
                 .init(name: "Date", descripiton: imageConfig.dateString),
-                .init(name: "Type", descripiton: "image"),
-                .init(name: "URL", descripiton: imageConfig.url)
+                .init(name: "Type", descripiton: "Image")
             ]
         case .audio(let string):
             [
-                .init(name: "Title", descripiton: "test_audio"),
-                .init(name: "Description", descripiton: "This is in audio"),
+                .init(name: "Title", descripiton: "Good evening we are from Ukraine"),
+                .init(name: "Description", descripiton: "The song's incipit 'Good evening, we are from Ukraine', became a popular unofficial military greeting in Ukraine after the Russian military invasion"),
                 .init(name: "Date", descripiton: "25/03/2024 12:40:30"),
-                .init(name: "Type", descripiton: "audio"),
-                .init(name: "URL", descripiton: string)
+                .init(name: "Type", descripiton: "Audio")
             ]
         case .link(let string, let string2):
             [
-                .init(name: "Title", descripiton: "test_audio"),
-                .init(name: "Description", descripiton: "This is a link"),
+                .init(name: "Title", descripiton: "Good evening we are from Ukraine"),
+                .init(name: "Description", descripiton: "The song's incipit 'Good evening, we are from Ukraine', became a popular unofficial military greeting in Ukraine after the Russian military invasion"),
                 .init(name: "Date", descripiton: "25/03/2024 12:40:30"),
-                .init(name: "Type", descripiton: "link"),
-                .init(name: "URL1", descripiton: string),
-                .init(name: "URL2", descripiton: string2)
+                .init(name: "Type", descripiton: "Link")
             ]
         case .video(let string):
             [
-                .init(name: "Title", descripiton: "test_audio"),
-                .init(name: "Description", descripiton: "This is a video"),
+                .init(name: "Title", descripiton: "Ukraine promo"),
+                .init(name: "Description", descripiton: "What is it like to be in Ukraine?"),
                 .init(name: "Date", descripiton: "25/03/2024 12:40:30"),
-                .init(name: "Type", descripiton: "video"),
-                .init(name: "URL", descripiton: string)
+                .init(name: "Type", descripiton: "Video")
             ]
         }
     }

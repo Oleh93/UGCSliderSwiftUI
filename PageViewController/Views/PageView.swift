@@ -16,8 +16,8 @@ enum PageType {
     
     // MARK: - ImageConfig
     struct ImageConfig {
-        var imageName: String = "test_image"
-        var description: String = "This is an image"
+        var imageName: String = "Utah"
+        var description: String = "Welcome to Utah"
         var dateString: String = "25/03/2024 12:40:30"
         var url: String
     }
