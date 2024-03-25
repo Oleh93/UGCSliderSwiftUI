@@ -28,109 +28,14 @@ let videoUrl = Bundle.main.url(forResource: "Ukraine", withExtension: "mp4")
 let videoUrl2 = Bundle.main.url(forResource: "StillWaters", withExtension: "mp4")
 
 struct ContentView: View {
-    @ObservedObject var state = PageViewState()
+    let viewModel: ContentViewModel
+    @ObservedObject var state: PageViewState
     
-    init() {
-        loadPages()
-    }
-    
-    func loadPages() {
-        let pages: [PageType] = [
-            .image(.init(
-                url: imageUrl,
-                toolBarItems: [
-                    .init(
-                        image: .init(systemName: "info.circle"),
-                        action: { state.isShowingInfoAlert = true }
-                    ),
-                    .init(
-                        image: .init(systemName: "square.and.arrow.up"),
-                        action: { }
-                    ),
-                    .init(
-                        image: .init(systemName: "trash"),
-                        action: { state.isShowingDeleteAlert = true }
-                    )
-                ]
-            )),
-            .audio(audioName),
-            .link(imageUrl2, audioName),
-            .video(videoUrl?.absoluteString ?? ""),
-            
-            .image(.init(
-                url: imageUrl3,
-                toolBarItems: [
-                    .init(
-                        image: .init(systemName: "info.circle"),
-                        action: { state.isShowingInfoAlert = true }
-                    ),
-                    .init(
-                        image: .init(systemName: "square.and.arrow.up"),
-                        action: { }
-                    ),
-                    .init(
-                        image: .init(systemName: "trash"),
-                        action: { state.isShowingDeleteAlert = true }
-                    )
-                ]
-            )),
-            .image(.init(
-                url: imageUrl4,
-                toolBarItems: [
-                    .init(
-                        image: .init(systemName: "info.circle"),
-                        action: { state.isShowingInfoAlert = true }
-                    ),
-                    .init(
-                        image: .init(systemName: "square.and.arrow.up"),
-                        action: { }
-                    ),
-                    .init(
-                        image: .init(systemName: "trash"),
-                        action: { state.isShowingDeleteAlert = true }
-                    )
-                ]
-            )),
-            .image(.init(
-                url: imageUrl5,
-                toolBarItems: [
-                    .init(
-                        image: .init(systemName: "info.circle"),
-                        action: { state.isShowingInfoAlert = true }
-                    ),
-                    .init(
-                        image: .init(systemName: "square.and.arrow.up"),
-                        action: { }
-                    ),
-                    .init(
-                        image: .init(systemName: "trash"),
-                        action: { state.isShowingDeleteAlert = true }
-                    )
-                ]
-            )),
-            
-			.video(videoUrl2?.absoluteString ?? ""),
-            
-            .image(.init(
-                url: imageUrl6,
-                toolBarItems: [
-                    .init(
-                        image: .init(systemName: "info.circle"),
-                        action: { state.isShowingInfoAlert = true }
-                    ),
-                    .init(
-                        image: .init(systemName: "square.and.arrow.up"),
-                        action: { }
-                    ),
-                    .init(
-                        image: .init(systemName: "trash"),
-                        action: { state.isShowingDeleteAlert = true }
-                    )
-                ]
-            )),
-        ]
+    init(viewModel: ContentViewModel) {
+        self.viewModel = viewModel
+        self.state = viewModel.state
         
-        state.configurePages(pages)
+        viewModel.loadPages()
     }
     
     var body: some View {
@@ -172,5 +77,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: ContentViewModel())
 }

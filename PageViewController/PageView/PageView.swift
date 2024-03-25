@@ -16,6 +16,7 @@ enum PageType {
     
     // MARK: - ImageConfig
     struct ImageConfig {
+        var imageName: String = "test_image"
         var description: String = "This is an image"
         var url: String
         var toolBarItems: [ToolbarView.ToolBarItemConfig] = []
