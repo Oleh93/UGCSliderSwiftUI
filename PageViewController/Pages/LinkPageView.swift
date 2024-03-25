@@ -12,7 +12,6 @@ struct LinkPageView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     
     @State private var showingAudioDrawer = false
-    @State private var isShowingAudioSideView = false
     
     var imageURL: String
     var audioURL: String
@@ -57,12 +56,14 @@ struct LinkPageView: View {
                 }
             }
         }
-        .onRotate { newOrientation in
-            if audioPageViewModel.isPLaying {
+        .onChange(of: horizontalSizeClass, {
+            if horizontalSizeClass == .compact {
                 showingAudioDrawer = true
+            } else {
+                showingAudioDrawer = false
             }
             print(showingAudioDrawer)
-        }
+        })
     }
 }
 
