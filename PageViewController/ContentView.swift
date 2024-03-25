@@ -22,9 +22,10 @@ let imageUrl7 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/8a
 
 let imageUrl8 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/ecb71db0-15ec-456e-b032-b677f9daf406.jpg?Client=AncestryIOS&MaxSide=1000"
 
-let videoName = "Ukraine"
-
 let audioName = "TestFile"
+
+let videoUrl = Bundle.main.url(forResource: "Ukraine", withExtension: "mp4")
+let videoUrl2 = Bundle.main.url(forResource: "StillWaters", withExtension: "mp4")
 
 struct ContentView: View {
     @ObservedObject var state = PageViewState()
@@ -54,13 +55,83 @@ struct ContentView: View {
             )),
             .audio(audioName),
             .link(imageUrl2, audioName),
-            .video(videoName),
+            .video(videoUrl?.absoluteString ?? ""),
+            
+            .image(.init(
+                url: imageUrl3,
+                toolBarItems: [
+                    .init(
+                        image: .init(systemName: "info.circle"),
+                        action: { state.isShowingInfoAlert = true }
+                    ),
+                    .init(
+                        image: .init(systemName: "square.and.arrow.up"),
+                        action: { }
+                    ),
+                    .init(
+                        image: .init(systemName: "trash"),
+                        action: { state.isShowingDeleteAlert = true }
+                    )
+                ]
+            )),
+            .image(.init(
+                url: imageUrl4,
+                toolBarItems: [
+                    .init(
+                        image: .init(systemName: "info.circle"),
+                        action: { state.isShowingInfoAlert = true }
+                    ),
+                    .init(
+                        image: .init(systemName: "square.and.arrow.up"),
+                        action: { }
+                    ),
+                    .init(
+                        image: .init(systemName: "trash"),
+                        action: { state.isShowingDeleteAlert = true }
+                    )
+                ]
+            )),
+            .image(.init(
+                url: imageUrl5,
+                toolBarItems: [
+                    .init(
+                        image: .init(systemName: "info.circle"),
+                        action: { state.isShowingInfoAlert = true }
+                    ),
+                    .init(
+                        image: .init(systemName: "square.and.arrow.up"),
+                        action: { }
+                    ),
+                    .init(
+                        image: .init(systemName: "trash"),
+                        action: { state.isShowingDeleteAlert = true }
+                    )
+                ]
+            )),
+            
+			.video(videoUrl2?.absoluteString ?? ""),
+            
+            .image(.init(
+                url: imageUrl6,
+                toolBarItems: [
+                    .init(
+                        image: .init(systemName: "info.circle"),
+                        action: { state.isShowingInfoAlert = true }
+                    ),
+                    .init(
+                        image: .init(systemName: "square.and.arrow.up"),
+                        action: { }
+                    ),
+                    .init(
+                        image: .init(systemName: "trash"),
+                        action: { state.isShowingDeleteAlert = true }
+                    )
+                ]
+            )),
         ]
         
         state.configurePages(pages)
     }
-    
-    let videoName = "Ukraine"
     
     var body: some View {
         VStack(spacing: .zero) {

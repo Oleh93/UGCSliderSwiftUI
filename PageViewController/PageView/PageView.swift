@@ -42,7 +42,7 @@ struct PageView: View {
                     .tag(index)
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
     
     @ViewBuilder
@@ -54,8 +54,8 @@ struct PageView: View {
             AudioPageView(viewModel: AudioPageViewModel(filename: filename))
         case .link(let imageURL, let audioURL):
             LinkPageView(imageURL: imageURL, audioURL: audioURL)
-        case .video(let fileName):
-            VideoPageView(videoFileName: fileName)
+        case .video(let videoUrl):
+            VideoPageView(url: videoUrl)
         }
     }
 }
