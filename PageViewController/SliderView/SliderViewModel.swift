@@ -1,5 +1,5 @@
 //
-//  ContentViewModel.swift
+//  SliderViewModel.swift
 //  PageViewController
 //
 //  Created by Oleh Mykytyn on 25.03.2024.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-class ContentViewModel {
-    let state: PageViewState
+class SliderViewModel {
+    let state: SliderViewState
     
     init() {
         self.state = .init()

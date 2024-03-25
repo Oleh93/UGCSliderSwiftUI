@@ -20,14 +20,16 @@
 		4F7B6CEE2BAD9E9100DD117C /* VideoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B6CED2BAD9E9100DD117C /* VideoPageView.swift */; };
 		4F7B6CF02BADA8F400DD117C /* Ukraine.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4F7B6CEF2BADA46D00DD117C /* Ukraine.mp4 */; };
 		4F7E05382BACEE0F005266F3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F7E05372BACEE0F005266F3 /* SDWebImageSwiftUI */; };
-		7438E0592BADA9F5000EC37F /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0582BADA9F5000EC37F /* ToolbarView.swift */; };
-		7438E05B2BADAC23000EC37F /* PageViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E05A2BADAC23000EC37F /* PageViewState.swift */; };
-		7438E0682BB18AC3000EC37F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0672BB18AC3000EC37F /* ContentViewModel.swift */; };
 		4F9C25EA2BB0D96E00297F05 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25E92BB0D96E00297F05 /* VideoPlayerViewModel.swift */; };
 		4F9C25EC2BB0D9E300297F05 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25EB2BB0D9E300297F05 /* VideoPlayerView.swift */; };
 		4F9C25EE2BB0DAA800297F05 /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25ED2BB0DAA800297F05 /* PlayerControlsView.swift */; };
 		4F9C25F02BB0DE4C00297F05 /* CustomProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25EF2BB0DE4C00297F05 /* CustomProgressBarView.swift */; };
 		4F9C25F22BB1754A00297F05 /* StillWaters.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4F9C25F12BB174EB00297F05 /* StillWaters.mp4 */; };
+		7438E0592BADA9F5000EC37F /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0582BADA9F5000EC37F /* ToolbarView.swift */; };
+		7438E05B2BADAC23000EC37F /* SliderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E05A2BADAC23000EC37F /* SliderViewState.swift */; };
+		7438E0682BB18AC3000EC37F /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0672BB18AC3000EC37F /* SliderViewModel.swift */; };
+		7438E06F2BB19435000EC37F /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E06E2BB19435000EC37F /* SliderView.swift */; };
+		7438E0712BB195F1000EC37F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0702BB195F1000EC37F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,14 +46,16 @@
 		119D4CE12BAC5F3200BB36EB /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
 		4F7B6CED2BAD9E9100DD117C /* VideoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPageView.swift; sourceTree = "<group>"; };
 		4F7B6CEF2BADA46D00DD117C /* Ukraine.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ukraine.mp4; sourceTree = "<group>"; };
-		7438E0582BADA9F5000EC37F /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
-		7438E05A2BADAC23000EC37F /* PageViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewState.swift; sourceTree = "<group>"; };
-		7438E0672BB18AC3000EC37F /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4F9C25E92BB0D96E00297F05 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		4F9C25EB2BB0D9E300297F05 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		4F9C25ED2BB0DAA800297F05 /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
 		4F9C25EF2BB0DE4C00297F05 /* CustomProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressBarView.swift; sourceTree = "<group>"; };
 		4F9C25F12BB174EB00297F05 /* StillWaters.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = StillWaters.mp4; sourceTree = "<group>"; };
+		7438E0582BADA9F5000EC37F /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		7438E05A2BADAC23000EC37F /* SliderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewState.swift; sourceTree = "<group>"; };
+		7438E0672BB18AC3000EC37F /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
+		7438E06E2BB19435000EC37F /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		7438E0702BB195F1000EC37F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +91,7 @@
 			children = (
 				119D4CC72BAB0A7D00BB36EB /* PageViewControllerApp.swift */,
 				119D4CC92BAB0A7D00BB36EB /* ContentView.swift */,
-				7438E0672BB18AC3000EC37F /* ContentViewModel.swift */,
-				7438E05D2BADB0BF000EC37F /* PageView */,
+				7438E06D2BB19423000EC37F /* SliderView */,
 				7438E05C2BADAFD7000EC37F /* Views */,
 				119D4CD72BAC520A00BB36EB /* Pages */,
 				119D4CE02BAC5F1600BB36EB /* Utils */,
@@ -97,6 +100,7 @@
 				4F9C25F12BB174EB00297F05 /* StillWaters.mp4 */,
 				119D4CCB2BAB0A7F00BB36EB /* Assets.xcassets */,
 				119D4CCD2BAB0A7F00BB36EB /* Preview Content */,
+				7438E0702BB195F1000EC37F /* Constants.swift */,
 			);
 			path = PageViewController;
 			sourceTree = "<group>";
@@ -128,14 +132,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		7438E05C2BADAFD7000EC37F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7438E0582BADA9F5000EC37F /* ToolbarView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		4F9C25E82BB0D76900297F05 /* VideoPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,13 +144,23 @@
 			path = VideoPage;
 			sourceTree = "<group>";
 		};
-		7438E05D2BADB0BF000EC37F /* PageView */ = {
+		7438E05C2BADAFD7000EC37F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7438E05A2BADAC23000EC37F /* PageViewState.swift */,
 				119D4CDE2BAC52EE00BB36EB /* PageView.swift */,
+				7438E0582BADA9F5000EC37F /* ToolbarView.swift */,
 			);
-			path = PageView;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7438E06D2BB19423000EC37F /* SliderView */ = {
+			isa = PBXGroup;
+			children = (
+				7438E0672BB18AC3000EC37F /* SliderViewModel.swift */,
+				7438E05A2BADAC23000EC37F /* SliderViewState.swift */,
+				7438E06E2BB19435000EC37F /* SliderView.swift */,
+			);
+			path = SliderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,13 +252,15 @@
 				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
 				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
 				4F9C25EE2BB0DAA800297F05 /* PlayerControlsView.swift in Sources */,
-				119D4CDF2BAC52EE00BB36EB /* PageViewController.swift in Sources */,
+				119D4CDF2BAC52EE00BB36EB /* PageView.swift in Sources */,
 				4F7B6CEE2BAD9E9100DD117C /* VideoPageView.swift in Sources */,
-				7438E0682BB18AC3000EC37F /* ContentViewModel.swift in Sources */,
+				7438E0682BB18AC3000EC37F /* SliderViewModel.swift in Sources */,
 				119D4CDD2BAC52B300BB36EB /* LinkPageView.swift in Sources */,
-				7438E05B2BADAC23000EC37F /* PageViewState.swift in Sources */,
+				7438E0712BB195F1000EC37F /* Constants.swift in Sources */,
+				7438E05B2BADAC23000EC37F /* SliderViewState.swift in Sources */,
 				119D4CC82BAB0A7D00BB36EB /* PageViewControllerApp.swift in Sources */,
 				4F9C25EC2BB0D9E300297F05 /* VideoPlayerView.swift in Sources */,
+				7438E06F2BB19435000EC37F /* SliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
