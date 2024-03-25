@@ -22,6 +22,7 @@
 		4F7E05382BACEE0F005266F3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F7E05372BACEE0F005266F3 /* SDWebImageSwiftUI */; };
 		7438E0592BADA9F5000EC37F /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0582BADA9F5000EC37F /* ToolbarView.swift */; };
 		7438E05B2BADAC23000EC37F /* PageViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E05A2BADAC23000EC37F /* PageViewState.swift */; };
+		7438E0682BB18AC3000EC37F /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438E0672BB18AC3000EC37F /* ContentViewModel.swift */; };
 		4F9C25EA2BB0D96E00297F05 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25E92BB0D96E00297F05 /* VideoPlayerViewModel.swift */; };
 		4F9C25EC2BB0D9E300297F05 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25EB2BB0D9E300297F05 /* VideoPlayerView.swift */; };
 		4F9C25EE2BB0DAA800297F05 /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C25ED2BB0DAA800297F05 /* PlayerControlsView.swift */; };
@@ -45,6 +46,7 @@
 		4F7B6CEF2BADA46D00DD117C /* Ukraine.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ukraine.mp4; sourceTree = "<group>"; };
 		7438E0582BADA9F5000EC37F /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		7438E05A2BADAC23000EC37F /* PageViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewState.swift; sourceTree = "<group>"; };
+		7438E0672BB18AC3000EC37F /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4F9C25E92BB0D96E00297F05 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		4F9C25EB2BB0D9E300297F05 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		4F9C25ED2BB0DAA800297F05 /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				119D4CC72BAB0A7D00BB36EB /* PageViewControllerApp.swift */,
 				119D4CC92BAB0A7D00BB36EB /* ContentView.swift */,
+				7438E0672BB18AC3000EC37F /* ContentViewModel.swift */,
 				7438E05D2BADB0BF000EC37F /* PageView */,
 				7438E05C2BADAFD7000EC37F /* Views */,
 				119D4CD72BAC520A00BB36EB /* Pages */,
@@ -245,6 +248,7 @@
 				4F9C25EE2BB0DAA800297F05 /* PlayerControlsView.swift in Sources */,
 				119D4CDF2BAC52EE00BB36EB /* PageViewController.swift in Sources */,
 				4F7B6CEE2BAD9E9100DD117C /* VideoPageView.swift in Sources */,
+				7438E0682BB18AC3000EC37F /* ContentViewModel.swift in Sources */,
 				119D4CDD2BAC52B300BB36EB /* LinkPageView.swift in Sources */,
 				7438E05B2BADAC23000EC37F /* PageViewState.swift in Sources */,
 				119D4CC82BAB0A7D00BB36EB /* PageViewControllerApp.swift in Sources */,
