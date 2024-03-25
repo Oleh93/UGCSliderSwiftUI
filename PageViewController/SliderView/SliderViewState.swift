@@ -1,5 +1,5 @@
 //
-//  PageViewState.swift
+//  SliderViewState.swift
 //  PageViewController
 //
 //  Created by Oleh Mykytyn on 22.03.2024.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class PageViewState: ObservableObject {
+class SliderViewState: ObservableObject {
     @Published var isShowingInfoAlert: Bool = false
     @Published var isShowingDeleteAlert: Bool = false
 
