@@ -15,20 +15,36 @@ struct MetadataView: View {
     }
     
     var metadata: [Metadata] = []
-    
+    var didTapCloseButton: (() -> Void)?
+
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 16) {
-                ForEach(metadata.indices, id: \.self) { index in
-                    let item = metadata[index]
-                    VStack(alignment: .leading) {
-                        Text("\(item.name):").font(.headline)
-                        Text(item.descripiton).font(.body)
+        VStack {
+            HStack {
+                Spacer()
+                Button { didTapCloseButton?() } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 18, height: 18)
+                        .foregroundStyle(Color(uiColor: .label))
+                }
+                .frame(width: 44, height: 44)
+            }
+            ScrollView {
+                HStack {
+                    VStack(alignment: .leading, spacing: 16) {
+                        ForEach(metadata.indices, id: \.self) { index in
+                            let item = metadata[index]
+                            VStack(alignment: .leading) {
+                                Text("\(item.name):").font(.headline)
+                                Text(item.descripiton).font(.body)
+                            }
+                            .tag(index)
+                        }
                     }
-                    .tag(index)
+                    Spacer(minLength: .zero)
                 }
             }
-            Spacer(minLength: .zero)
+
         }
     }
 }

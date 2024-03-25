@@ -6,25 +6,28 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SliderViewModel {
+    private var horizontalSizeClass: UserInterfaceSizeClass?
+
     let state: SliderViewState
-    
-    private var defaultInfoAlertAction: (() -> Void) {
-        { self.state.isShowingInfoAlert = true }
-    }
-    
-    private var defaultDeleteAlertAction: (() -> Void) {
-        { self.state.isShowingDeleteAlert = true }
-    }
-    
+
     private lazy var defaultToolBarItems: [ToolbarView.ToolBarItemConfig] = [
-        .init(image: .init(systemName: "trash"), action: defaultDeleteAlertAction),
-        .init(image: .init(systemName: "info.circle"), action: defaultInfoAlertAction)
+        .init(image: .init(systemName: "trash"), action: { self.didTapDeleteButton() }),
+        .init(image: .init(systemName: "info.circle"), action: { self.didTapInfoButton() })
     ]
     
     init() {
         self.state = .init()
+    }
+    
+    var shouldShowToolbar: Bool {
+        if horizontalSizeClass == .compact {
+            return true
+        } else {
+            return !state.isShowingInfoSideView
+        }
     }
     
     func loadPages() {
@@ -78,5 +81,38 @@ class SliderViewModel {
     
     func toolBarItemsForCurrentPage() -> [ToolbarView.ToolBarItemConfig] {
         defaultToolBarItems
+    }
+    
+    func didTapInfoButton() {
+        if horizontalSizeClass == .compact {
+            state.isShowingInfoAlert = true
+        } else {
+            state.isShowingInfoSideView = true
+        }
+    }
+    
+    func didTapDeleteButton() {
+        state.isShowingDeleteAlert = true
+    }
+    
+    func didChangeHorizontalSizeClass(_ horizontalSizeClass: UserInterfaceSizeClass?) {
+        self.horizontalSizeClass = horizontalSizeClass
+        
+        if horizontalSizeClass == .compact {
+            if state.isShowingInfoSideView {
+                state.isShowingInfoAlert = true
+                state.isShowingInfoSideView = false
+            }
+        } else {
+            if state.isShowingInfoAlert {
+                state.isShowingInfoAlert = false
+                state.isShowingInfoSideView = true
+            }
+        }
+    }
+    
+    func didTapInfoViewCloseButton() {
+        state.isShowingInfoAlert = false
+        state.isShowingInfoSideView = false
     }
 }

@@ -10,6 +10,8 @@ import Combine
 
 class SliderViewState: ObservableObject {
     @Published var isShowingInfoAlert: Bool = false
+    @Published var isShowingInfoSideView: Bool = false
+
     @Published var isShowingDeleteAlert: Bool = false
 
     @Published var pages: [PageType] = []
