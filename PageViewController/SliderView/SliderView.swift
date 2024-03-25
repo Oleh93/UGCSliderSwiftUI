@@ -10,10 +10,9 @@ import SwiftUI
 
 struct SliderView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
-    
+
     let viewModel: SliderViewModel
     @ObservedObject var state: SliderViewState
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
 
     init(viewModel: SliderViewModel) {
         self.viewModel = viewModel
@@ -41,15 +40,12 @@ struct SliderView: View {
             }
         }
         .onChange(of: horizontalSizeClass, {
-            print(horizontalSizeClass)
+            viewModel.didChangeHorizontalSizeClass(horizontalSizeClass)
         })
         .background(.black)
         .environment(\.colorScheme, .dark)
         .sheet(isPresented: $state.isShowingInfoAlert) {
-            ZStack {
-                Color(.secondarySystemBackground).edgesIgnoringSafeArea(.all)
-                infoViewForCurrentPage
-            }
+            infoViewForCurrentPage
             .presentationDetents([.medium, .large])
             .presentationDragIndicator(.visible)
             .environment(\.colorScheme, .dark)
@@ -68,8 +64,11 @@ struct SliderView: View {
 
     @ViewBuilder
     var infoViewForCurrentPage: some View {
-        MetadataView(metadata: viewModel.metadataForCurrentPage())
-            .padding(16)
+        MetadataView(metadata: viewModel.metadataForCurrentPage()) {
+            viewModel.didTapInfoViewCloseButton()
+        }
+        .padding(16)
+        .background(Color(.secondarySystemBackground))
     }
     
     var deleteAlertForCurrentPage: Alert {
