@@ -11,6 +11,7 @@ import SwiftUI
 struct SliderView: View {
     let viewModel: SliderViewModel
     @ObservedObject var state: SliderViewState
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
 
     init(viewModel: SliderViewModel) {
         self.viewModel = viewModel
@@ -20,13 +21,22 @@ struct SliderView: View {
     }
     
     var body: some View {
-        VStack(spacing: .zero) {
-            PageView(
-                state: state,
-                currentIndex: $state.currentIndex,
-                pages: $state.pages
-            )
-            ToolbarView(items: viewModel.toolBarItemsForCurrentPage())
+        HStack(spacing: .zero) {
+            VStack(spacing: .zero) {
+                PageView(
+                    state: state,
+                    currentIndex: $state.currentIndex,
+                    pages: $state.pages
+                )
+                if viewModel.shouldShowToolbar {
+                    ToolbarView(items: viewModel.toolBarItemsForCurrentPage())
+                }
+            }
+            if state.isShowingInfoSideView {
+                infoViewForCurrentPage
+                    .frame(width: 250)
+                    .transition(.move(edge: .trailing))
+            }
         }
         .background(.black)
         .environment(\.colorScheme, .dark)
@@ -38,11 +48,20 @@ struct SliderView: View {
         .alert(isPresented: $state.isShowingDeleteAlert) {
             deleteAlertForCurrentPage
         }
+        .onChange(of: horizontalSizeClass, {
+            viewModel.didChangeHorizontalSizeClass(horizontalSizeClass)
+        })
+        .onAppear(perform: {
+            viewModel.didChangeHorizontalSizeClass(horizontalSizeClass)
+        })
+        .animation(.easeInOut, value: state.isShowingInfoSideView)
     }
-    
+
     @ViewBuilder
     var infoViewForCurrentPage: some View {
-        MetadataView(metadata: viewModel.metadataForCurrentPage())
+        MetadataView(metadata: viewModel.metadataForCurrentPage()) {
+            viewModel.didTapInfoViewCloseButton()
+        }
             .padding(.horizontal, 16)
     }
     
