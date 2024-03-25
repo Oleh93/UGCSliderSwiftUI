@@ -45,33 +45,40 @@ struct LinkPageView: View {
                 }
                 
             } else {
-                HStack {
-                    Spacer()
-                    ImagePageView(url: imageURL)
-                    Spacer()
-                    if showingSideDrawer {
-                        VStack {
-                            HStack {
-                                Button { showingSideDrawer = false } label: {
-                                    Image(systemName: "xmark")
-                                        .resizable()
-                                        .frame(width: 18, height: 18)
-                                        .foregroundStyle(Color(uiColor: .label))
+                ZStack {
+                    HStack {
+                        Spacer()
+                        ImagePageView(url: imageURL)
+                        Spacer()
+                        if showingSideDrawer {
+                            VStack {
+                                HStack {
+                                    Button { showingSideDrawer = false } label: {
+                                        Image(systemName: "xmark")
+                                            .resizable()
+                                            .frame(width: 18, height: 18)
+                                            .foregroundStyle(Color(uiColor: .label))
+                                    }
+                                    .frame(width: 44, height: 44)
+                                    Spacer()
                                 }
-                                .frame(width: 44, height: 44)
-                                Spacer()
+                                AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
                             }
-                            AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
+                            .frame(width: 250, alignment: .trailing)
+                            .background(Color(.secondarySystemBackground).edgesIgnoringSafeArea(.all))
                         }
-                        .frame(width: 250, alignment: .trailing)
-                        .background(Color(.secondarySystemBackground).edgesIgnoringSafeArea(.all))
-                    } else {
-                        VStack {
+                    }
+                    
+                    if !showingSideDrawer {
+                        HStack {
                             Spacer()
-                            playAudioButton
+                            VStack {
+                                Spacer()
+                                playAudioButton
+                            }
+                            .padding(.bottom, 64)
+                            .padding(.trailing, 16)
                         }
-                        .padding(.bottom, 64)
-                        .transition(.move(edge: .trailing))
                     }
                 }
             }
