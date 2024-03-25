@@ -11,7 +11,7 @@ import SwiftUI
 struct SliderView: View {
     let viewModel: SliderViewModel
     @ObservedObject var state: SliderViewState
-    
+
     init(viewModel: SliderViewModel) {
         self.viewModel = viewModel
         self.state = viewModel.state
@@ -25,13 +25,14 @@ struct SliderView: View {
                 currentIndex: $state.currentIndex,
                 pages: $state.pages
             )
-            ToolbarView(items: state.currentPage.toolBarItems)
+            ToolbarView(items: viewModel.toolBarItemsForCurrentPage())
         }
         .background(.black)
         .environment(\.colorScheme, .dark)
         .sheet(isPresented: $state.isShowingInfoAlert) {
             infoViewForCurrentPage
-                .presentationDetents([.medium])
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
         }
         .alert(isPresented: $state.isShowingDeleteAlert) {
             deleteAlertForCurrentPage
@@ -40,12 +41,8 @@ struct SliderView: View {
     
     @ViewBuilder
     var infoViewForCurrentPage: some View {
-        switch state.currentPage {
-        case .image(let imageConfig):
-            Text(imageConfig.description)
-        default:
-            EmptyView()
-        }
+        MetadataView(metadata: viewModel.metadataForCurrentPage())
+            .padding(.horizontal, 16)
     }
     
     var deleteAlertForCurrentPage: Alert {
