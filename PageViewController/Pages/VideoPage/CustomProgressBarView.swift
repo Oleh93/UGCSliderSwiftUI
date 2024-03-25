@@ -123,9 +123,5 @@ private class DashedSliderView: UISlider {
         context?.setFillColor(viewedColor)
         let viewedLine = CGRect(x: 0, y: (rect.size.height - dashHeight) / 2, width: viewedX, height: dashHeight)
         context?.fill(viewedLine)
-        
-        let totalDuration = CMTimeGetSeconds(
-            avPlayer.currentItem?.asset.duration ?? CMTime(seconds: 0, preferredTimescale: 1)
-        )
     }
 }

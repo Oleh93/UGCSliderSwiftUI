@@ -19,7 +19,6 @@ struct VideoPageView: View {
             VideoPlayerView(isPlaying: $viewModel.isPlaying, player: avPlayer)
                 .onDisappear {
                     viewModel.stopVideoPlayback()
-                    viewModel.isPlaying = false
                 }
         } else {
             Text("Video not found")

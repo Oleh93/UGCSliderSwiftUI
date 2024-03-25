@@ -21,5 +21,6 @@ class VideoPlayerViewModel: ObservableObject {
     func stopVideoPlayback() {
         player?.pause()
         player?.seek(to: .zero)
+        isPlaying = false
     }
 }
