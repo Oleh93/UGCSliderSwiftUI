@@ -34,7 +34,7 @@ class SliderViewModel {
                 ]
             )),
             .audio(audioName),
-            .link(imageUrl2, audioName),
+            .link(imageUrl2, audioName2),
             .video(videoUrl?.absoluteString ?? ""),
             
                 .image(.init(

@@ -11,7 +11,16 @@ import AVKit
 
 struct AudioPageView: View {
     
+    var isDisplayedView: Bool
     @ObservedObject var viewModel: AudioPageViewModel
+    
+    init(isDisplayedView: Bool, viewModel: AudioPageViewModel) {
+        self.isDisplayedView = isDisplayedView
+        self.viewModel = viewModel
+        if !isDisplayedView {
+            viewModel.stopAudio()
+        }
+    }
     
     var body: some View {
         VStack {
@@ -111,9 +120,14 @@ class AudioPageViewModel: ObservableObject {
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minute, seconds)
     }
+    
+    deinit {
+        stopAudio()
+        print("deinit")
+    }
 }
 
 #Preview {
-    AudioPageView(viewModel: AudioPageViewModel(filename: "TestFile"))
+    AudioPageView(isDisplayedView: true, viewModel: AudioPageViewModel(filename: "TestFile"))
         .environment(\.colorScheme, .dark)
 }

@@ -22,6 +22,7 @@ struct SliderView: View {
     var body: some View {
         VStack(spacing: .zero) {
             PageView(
+                state: state,
                 currentIndex: $state.currentIndex,
                 pages: $state.pages
             )

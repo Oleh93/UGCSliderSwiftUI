@@ -33,13 +33,14 @@ enum PageType {
 }
 
 struct PageView: View {
+    var state: SliderViewState
     @Binding var currentIndex: Int
     @Binding var pages: [PageType]
     
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(pages.indices, id: \.self) { index in
-                getView(for: pages[index])
+                getView(for: pages[index], isDisplayedView: index == currentIndex)
                     .tag(index)
             }
         }
@@ -47,14 +48,22 @@ struct PageView: View {
     }
     
     @ViewBuilder
-    private func getView(for viewType: PageType) -> some View {
+    private func getView(for viewType: PageType, isDisplayedView: Bool) -> some View {
         switch viewType {
         case .image(let config):
             ImagePageView(url: config.url)
-        case .audio(let filename):
-            AudioPageView(viewModel: AudioPageViewModel(filename: filename))
+        case .audio(_):
+            if let vm = state.getViewModel(for: viewType) {
+                AudioPageView(isDisplayedView: isDisplayedView, viewModel: vm)
+            } else {
+                EmptyView()
+            }
         case .link(let imageURL, let audioURL):
-            LinkPageView(imageURL: imageURL, audioURL: audioURL)
+            if let vm = state.getViewModel(for: viewType) {
+                LinkPageView(imageURL: imageURL, audioURL: audioURL, audioPageViewModel: vm, isDisplayedView: isDisplayedView)
+            } else {
+                EmptyView()
+            }
         case .video(let videoUrl):
             VideoPageView(url: videoUrl)
         }

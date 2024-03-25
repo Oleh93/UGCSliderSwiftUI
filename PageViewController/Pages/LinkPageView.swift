@@ -16,12 +16,14 @@ struct LinkPageView: View {
     var imageURL: String
     var audioURL: String
     
+    var isDisplayedView: Bool
     var audioPageViewModel: AudioPageViewModel
     
-    init(imageURL: String, audioURL: String) {
+    init(imageURL: String, audioURL: String, audioPageViewModel: AudioPageViewModel, isDisplayedView: Bool) {
         self.imageURL = imageURL
         self.audioURL = audioURL
-        self.audioPageViewModel = AudioPageViewModel(filename: audioURL)
+        self.isDisplayedView = isDisplayedView
+        self.audioPageViewModel = audioPageViewModel
     }
     
     var body: some View {
@@ -41,7 +43,7 @@ struct LinkPageView: View {
                     .padding(.trailing, 32)
                 }
                 .sheet(isPresented: $showingAudioDrawer) {
-                    AudioPageView(viewModel: self.audioPageViewModel)
+                    AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
                         .presentationDetents([.medium, .large])
                         .background(Color(.systemGray))
                 }
@@ -50,14 +52,14 @@ struct LinkPageView: View {
                     Spacer()
                     ImagePageView(url: imageURL)
                     Spacer()
-                    AudioPageView(viewModel: self.audioPageViewModel)
+                    AudioPageView(isDisplayedView: isDisplayedView, viewModel: self.audioPageViewModel)
                         .frame(width: 250, alignment: .trailing)
                         .background(Color(.systemGray))
                 }
             }
         }
         .onChange(of: horizontalSizeClass, {
-            if horizontalSizeClass == .compact {
+            if horizontalSizeClass == .compact && isDisplayedView {
                 showingAudioDrawer = true
             } else {
                 showingAudioDrawer = false
@@ -68,5 +70,5 @@ struct LinkPageView: View {
 }
 
 #Preview {
-    LinkPageView(imageURL: "https://mediasvc.ancestrystage.com/v2/image/namespaces/1093/media/4cc0bbbd-b908-4105-b198-17c3de9e50c6.jpg?Client=AncestryIOS&MaxSide=400", audioURL: "TestFile")
+    LinkPageView(imageURL: "https://mediasvc.ancestrystage.com/v2/image/namespaces/1093/media/4cc0bbbd-b908-4105-b198-17c3de9e50c6.jpg?Client=AncestryIOS&MaxSide=400", audioURL: "TestFile", audioPageViewModel: AudioPageViewModel(filename: audioName), isDisplayedView: true)
 }

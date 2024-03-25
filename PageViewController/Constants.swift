@@ -22,7 +22,8 @@ let imageUrl7 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/8a
 
 let imageUrl8 = "https://mediasvc.ancestry.com/v2/image/namespaces/1093/media/ecb71db0-15ec-456e-b032-b677f9daf406.jpg?Client=AncestryIOS&MaxSide=1000"
 
-let audioName = "TestFile"
+let audioName = "WeAreFromUkraine"
+let audioName2 = "WeAreFromUkraine_1"
 
 let videoUrl = Bundle.main.url(forResource: "Ukraine", withExtension: "mp4")
 let videoUrl2 = Bundle.main.url(forResource: "StillWaters", withExtension: "mp4")
