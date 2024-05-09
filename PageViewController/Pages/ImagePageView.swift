@@ -111,11 +111,14 @@ struct ImagePageView: View {
     }
     
     private func handleOffsetChange(_ offset: CGSize) -> CGSize {
+        
+        guard offset != .zero else { return self.offset }
+        
         var newOffset: CGSize = .zero
         
         let imageScaledWidth = imageSize.width * scale
         // do not allow to move it horizontally if image width fits the slider width
-        if imageScaledWidth > sliderSize.width {
+        if imageScaledWidth > sliderSize.width && offset.width != 0 {
             let expectedWidth = (offset.width / scale + lastOffset.width) * scale
             let absExpectedWidth = abs(expectedWidth)
             let maxOffSetWidth = ((imageScaledWidth - sliderSize.width) / 2 ) + imageScaledWidth * Constants.maxOutOfEdgePart
@@ -126,7 +129,7 @@ struct ImagePageView: View {
         
         let imageScaledHeight = imageSize.height * scale
         // do not allow to move it vertically if image height fits the slider height
-        if imageScaledHeight > sliderSize.height {
+        if imageScaledHeight > sliderSize.height && offset.height != 0 {
             let expectedHeight = (offset.height / scale + lastOffset.height) * scale
             let absExpectedHeight = abs(expectedHeight)
             let maxOffSetHeight = ((imageScaledHeight - sliderSize.height) / 2 ) + imageScaledHeight * Constants.maxOutOfEdgePart
