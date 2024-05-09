@@ -16,6 +16,8 @@ class SliderViewState: ObservableObject {
 
     @Published var pages: [PageType] = []
     @Published var currentIndex: Int = .zero
+    
+    @Published var sliderSize: CGSize = .zero
 
     var currentPage: PageType {
         pages[currentIndex]

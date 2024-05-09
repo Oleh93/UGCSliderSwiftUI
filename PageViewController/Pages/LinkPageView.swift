@@ -19,19 +19,21 @@ struct LinkPageView: View {
     
     var isDisplayedView: Bool
     var audioPageViewModel: AudioPageViewModel
+    var sliderSize: CGSize
     
-    init(imageURL: String, audioURL: String, audioPageViewModel: AudioPageViewModel, isDisplayedView: Bool) {
+    init(imageURL: String, audioURL: String, audioPageViewModel: AudioPageViewModel, isDisplayedView: Bool, sliderSize: CGSize) {
         self.imageURL = imageURL
         self.audioURL = audioURL
         self.isDisplayedView = isDisplayedView
         self.audioPageViewModel = audioPageViewModel
+        self.sliderSize = sliderSize
     }
     
     var body: some View {
         Group {
             if horizontalSizeClass == .compact {
                 ZStack {
-                    ImagePageView(url: imageURL)
+                    ImagePageView(url: imageURL, sliderSize: sliderSize)
                     playAudioButton
                         .padding(.bottom, 64)
                         .padding(.trailing, 32)
@@ -48,7 +50,7 @@ struct LinkPageView: View {
                 ZStack {
                     HStack {
                         Spacer()
-                        ImagePageView(url: imageURL)
+                        ImagePageView(url: imageURL, sliderSize: sliderSize)
                         Spacer()
                         if showingSideDrawer {
                             VStack {
@@ -83,7 +85,7 @@ struct LinkPageView: View {
                 }
             }
         }
-        .onChange(of: horizontalSizeClass, {
+        .onChange(of: horizontalSizeClass) { horizontalSizeClass in
             if horizontalSizeClass == .compact && isDisplayedView {
                 showingAudioDrawer = true
             } else {
@@ -95,8 +97,7 @@ struct LinkPageView: View {
             } else {
                 showingSideDrawer = false
             }
-            print(showingAudioDrawer)
-        })
+        }
     }
     
     var playAudioButton: some View {
@@ -117,5 +118,5 @@ struct LinkPageView: View {
 }
 
 #Preview {
-    LinkPageView(imageURL: "https://mediasvc.ancestrystage.com/v2/image/namespaces/1093/media/4cc0bbbd-b908-4105-b198-17c3de9e50c6.jpg?Client=AncestryIOS&MaxSide=400", audioURL: "TestFile", audioPageViewModel: AudioPageViewModel(filename: audioName, name: "We are from Ukraine"), isDisplayedView: true)
+    LinkPageView(imageURL: "https://mediasvc.ancestrystage.com/v2/image/namespaces/1093/media/4cc0bbbd-b908-4105-b198-17c3de9e50c6.jpg?Client=AncestryIOS&MaxSide=400", audioURL: "TestFile", audioPageViewModel: AudioPageViewModel(filename: audioName, name: "We are from Ukraine"), isDisplayedView: true, sliderSize: .zero)
 }

@@ -22,24 +22,32 @@ struct SliderView: View {
     }
     
     var body: some View {
-        HStack(spacing: .zero) {
-            VStack(spacing: .zero) {
-                PageView(
-                    state: state,
-                    currentIndex: $state.currentIndex,
-                    pages: $state.pages
-                )
-                if viewModel.shouldShowToolbar {
-                    ToolbarView(items: viewModel.toolBarItemsForCurrentPage())
+        GeometryReader { geometry in
+            HStack(spacing: .zero) {
+                VStack(spacing: .zero) {
+                    PageView(
+                        state: state,
+                        currentIndex: $state.currentIndex,
+                        pages: $state.pages
+                    )
+                    if viewModel.shouldShowToolbar {
+                        ToolbarView(items: viewModel.toolBarItemsForCurrentPage())
+                    }
+                }
+                if state.isShowingInfoSideView {
+                    infoSideViewForCurrentPage
                 }
             }
-            if state.isShowingInfoSideView {
-                infoSideViewForCurrentPage
+            .onAppear {
+                setSliderSize(viewSize: geometry.size, safeAreaInsets: geometry.safeAreaInsets)
+            }
+            .readSize { size in
+                setSliderSize(viewSize: size, safeAreaInsets: geometry.safeAreaInsets)
             }
         }
-        .onChange(of: horizontalSizeClass, {
+        .onChange(of: horizontalSizeClass) { horizontalSizeClass in
             viewModel.didChangeHorizontalSizeClass(horizontalSizeClass)
-        })
+        }
         .background(.black)
         .environment(\.colorScheme, .dark)
         .sheet(isPresented: $state.isShowingInfoAlert) {
@@ -51,13 +59,16 @@ struct SliderView: View {
         .alert(isPresented: $state.isShowingDeleteAlert) {
             deleteAlertForCurrentPage
         }
-        .onChange(of: horizontalSizeClass, {
-            viewModel.didChangeHorizontalSizeClass(horizontalSizeClass)
-        })
         .onAppear(perform: {
             viewModel.didChangeHorizontalSizeClass(horizontalSizeClass)
         })
         .animation(.easeInOut, value: state.isShowingInfoSideView)
+    }
+    
+    func setSliderSize(viewSize: CGSize, safeAreaInsets: EdgeInsets) {
+        let width = viewSize.width - safeAreaInsets.leading - safeAreaInsets.trailing
+        let height = viewSize.height - safeAreaInsets.top - safeAreaInsets.bottom
+        state.sliderSize = CGSize(width: width, height: height)
     }
 
     @ViewBuilder

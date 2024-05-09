@@ -42,7 +42,7 @@ struct PageView: View {
     private func getView(for viewType: PageType, isDisplayedView: Bool) -> some View {
         switch viewType {
         case .image(let config):
-            ImagePageView(url: config.url)
+            ImagePageView(url: config.url, sliderSize: state.sliderSize)
         case .audio(_):
             if let vm = state.getViewModel(for: viewType) {
                 AudioPageView(isDisplayedView: isDisplayedView, viewModel: vm)
@@ -51,7 +51,7 @@ struct PageView: View {
             }
         case .link(let imageURL, let audioURL):
             if let vm = state.getViewModel(for: viewType) {
-                LinkPageView(imageURL: imageURL, audioURL: audioURL, audioPageViewModel: vm, isDisplayedView: isDisplayedView)
+                LinkPageView(imageURL: imageURL, audioURL: audioURL, audioPageViewModel: vm, isDisplayedView: isDisplayedView, sliderSize: state.sliderSize)
             } else {
                 EmptyView()
             }
