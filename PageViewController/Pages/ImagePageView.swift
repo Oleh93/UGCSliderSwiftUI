@@ -10,8 +10,11 @@ import SDWebImageSwiftUI
 
 struct ImagePageView: View {
     
-    private let animationDuration: CGFloat = 0.3
-    private let maxOutOfEdgeCount = 2
+    struct Constants {
+        static let animationDuration: CGFloat = 0.3
+        static let maxOutOfEdgeCount = 2
+        static let maxOutOfEdgePart = 0.05 // 5%
+    }
     
     var url: String
     var sliderSize: CGSize
@@ -22,6 +25,7 @@ struct ImagePageView: View {
     @State var offset: CGSize = .zero
     @State var lastOffset: CGSize = .zero
     
+    @State var isGragging: Bool = false
     @State var imageSize: CGSize = .zero
     @State var outOfLeftEdgeCount: Int = 0
     @State var outOfRightEdgeCount: Int = 0
@@ -52,13 +56,13 @@ struct ImagePageView: View {
                     }
                     .onEnded { delta in
                         if (scale * delta) < 1.0 {
-                            withAnimation(.interactiveSpring(duration: animationDuration)) {
+                            withAnimation(.interactiveSpring(duration: Constants.animationDuration)) {
                                 resetToOriginalPisitionAndScale()
                             }
                         } else {
                             scale *= delta
                             // position the image correctly after zoom out
-                            withAnimation(.interactiveSpring(duration: animationDuration)) {
+                            withAnimation(.interactiveSpring(duration: Constants.animationDuration)) {
                                 dragDidEnd()
                             }
                         }
@@ -68,19 +72,24 @@ struct ImagePageView: View {
             .highPriorityGesture(
                 scale == 1.0 ? nil : DragGesture(minimumDistance: 0)
                     .onChanged({ value in
+                        isGragging = true
                         withAnimation(.interactiveSpring()) {
                             offset = handleOffsetChange(value.translation)
                         }
                     })
                     .onEnded({ gesture in
+                        isGragging = false
                         // first we need to decelerate image
-                        withAnimation(.interactiveSpring(duration: animationDuration)) {
+                        withAnimation(.interactiveSpring(duration: 2 * Constants.animationDuration)) {
                             offset = handleOffsetChange(gesture.predictedEndTranslation)
+                            lastOffset = offset
                         }
                         // then wait for decelerate to be done and then position the image correctly
-                        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-                            withAnimation(.interactiveSpring(duration: animationDuration)) {
-                                dragDidEnd()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.animationDuration) {
+                            if !isGragging {
+                                withAnimation(.interactiveSpring(duration: Constants.animationDuration)) {
+                                    dragDidEnd()
+                                }
                             }
                         }
                     }))
@@ -93,7 +102,7 @@ struct ImagePageView: View {
                                 scale = 2.0
                             }
                         } else {
-                            withAnimation(.interactiveSpring(duration: animationDuration)) {
+                            withAnimation(.interactiveSpring(duration: Constants.animationDuration)) {
                                 resetToOriginalPisitionAndScale()
                             }
                         }
@@ -107,13 +116,23 @@ struct ImagePageView: View {
         let imageScaledWidth = imageSize.width * scale
         // do not allow to move it horizontally if image width fits the slider width
         if imageScaledWidth > sliderSize.width {
-            newOffset.width = offset.width / scale + lastOffset.width
+            let expectedWidth = (offset.width / scale + lastOffset.width) * scale
+            let absExpectedWidth = abs(expectedWidth)
+            let maxOffSetWidth = ((imageScaledWidth - sliderSize.width) / 2 ) + imageScaledWidth * Constants.maxOutOfEdgePart
+            // do not allow it go out of edge more then 5% of image
+            let actualWidth = min(maxOffSetWidth, absExpectedWidth) * expectedWidth / absExpectedWidth
+            newOffset.width = actualWidth / scale
         }
         
         let imageScaledHeight = imageSize.height * scale
         // do not allow to move it vertically if image height fits the slider height
         if imageScaledHeight > sliderSize.height {
-            newOffset.height = offset.height / scale + lastOffset.height
+            let expectedHeight = (offset.height / scale + lastOffset.height) * scale
+            let absExpectedHeight = abs(expectedHeight)
+            let maxOffSetHeight = ((imageScaledHeight - sliderSize.height) / 2 ) + imageScaledHeight * Constants.maxOutOfEdgePart
+            // do not allow it go out of edge more then 5% of image
+            let actualHeight = min(maxOffSetHeight, absExpectedHeight) * expectedHeight / absExpectedHeight
+            newOffset.height = actualHeight / scale
         }
         
         return newOffset
@@ -131,7 +150,7 @@ struct ImagePageView: View {
         lastOffset = offset
         
         // if image has been moved out of edges more then `maxOutOfEdgeCount` times -> reset to original and allow swipe to next image
-        if outOfLeftEdgeCount >= maxOutOfEdgeCount || outOfRightEdgeCount >= maxOutOfEdgeCount {
+        if outOfLeftEdgeCount >= Constants.maxOutOfEdgeCount || outOfRightEdgeCount >= Constants.maxOutOfEdgeCount {
             resetToOriginalPisitionAndScale()
         }
     }
